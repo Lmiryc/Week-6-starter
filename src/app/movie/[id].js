@@ -13,10 +13,10 @@ const cast = ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart', 'Michael Caine'
 export default function MovieDetail() {
   const { id } = useLocalSearchParams();
   const movie = demoMovies.find((item) => String(item.id) === String(id)) || demoMovies[0];
-
+  
   const dispatch = useDispatch();
+  //check the movie saved status
   const isSaved = useSelector((state) => state.favorites.ids.includes(movie.id));
-
   // Update the UI immediately, then persist. Undo the change if saving fails.
   const handleToggleFavorite = async () => {
     const nextSaved = !isSaved;
