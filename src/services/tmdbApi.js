@@ -12,8 +12,13 @@ export const tmdbApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    searchMovies: builder.query({ query: (query) => `search/movie?query=${encodeURIComponent(query)}` }),
-    movieDetails: builder.query({ query: (id) => `movie/${id}?append_to_response=credits,reviews,recommendations` }),
+    searchMovies: builder.query({
+      query: (query) => `search/movie?query=${encodeURIComponent(query)}`,
+    }),
+    movieDetails: builder.query({
+      query: (id) => `movie/${id}?append_to_response=credits,reviews,recommendations`,
+    }),
   }),
 });
+
 export const { useSearchMoviesQuery, useMovieDetailsQuery } = tmdbApi;
