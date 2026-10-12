@@ -19,7 +19,7 @@ export const SORT_OPTIONS = {
 
 // Ignore movies with only a handful of votes, so "top rated" means something.
 const MIN_VOTE_COUNT = 300;
-
+//cmt: use the API to fetch data, this doc is for API service only
 export const tmdbApi = createApi({
   reducerPath: 'tmdbApi',
   baseQuery: fetchBaseQuery({
