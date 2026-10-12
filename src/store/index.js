@@ -1,30 +1,22 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 import { tmdbApi } from '../services/tmdbApi';
+import authReducer from './authSlice';
+import browseReducer from './browseSlice';
+import favoritesReducer from './favoritesSlice';
 
-const favoritesSlice = createSlice({
-  name: 'favorites',
-  initialState: { ids: [] },
-  reducers: {
-    setFavorites: (state, action) => {
-      state.ids = action.payload;
-    },
-    toggleFavorite: (state, action) => {
-      const movieId = action.payload;
-      if (state.ids.includes(movieId)) {
-        state.ids = state.ids.filter((id) => id !== movieId);
-      } else {
-        state.ids = [...state.ids, movieId];
-      }
-    },
-  },
-});
+export { signedIn, signedOut } from './authSlice';
+export { setGenre, setQuery, toggleSort } from './browseSlice';
+export { setFavorites, toggleFavorite } from './favoritesSlice';
 
-export const { setFavorites, toggleFavorite } = favoritesSlice.actions;
-
+// One store holds both kinds of state:
+// - client state: auth, favorites and browse slices (owned by this app)
+// - server state: tmdbApi, RTK Query's cache of TMDB responses
 export const store = configureStore({
   reducer: {
-    favorites: favoritesSlice.reducer,
+    auth: authReducer,
+    favorites: favoritesReducer,
+    browse: browseReducer,
     [tmdbApi.reducerPath]: tmdbApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tmdbApi.middleware),
