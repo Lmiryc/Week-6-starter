@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+//cmt: use the redux to create a slice of the search query
 // The search screen's filters. Kept in Redux (not component state) so they
 // survive switching tabs and can be set from other screens, e.g. Explore.
 const browseSlice = createSlice({

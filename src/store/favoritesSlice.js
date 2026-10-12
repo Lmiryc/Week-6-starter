@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { signedOut } from './authSlice';
-
+////cmt: use redux to create a slice of the favorite movie status.
 // IDs of the signed-in user's favorite movies. The movie data itself is server
 // state and comes from TMDB (see services/tmdbApi.js).
 const favoritesSlice = createSlice({
   name: 'favorites',
+  //cmt: The initialState store the favorite ID list.
   initialState: { ids: [] },
   reducers: {
     setFavorites: (state, action) => {
@@ -20,6 +21,7 @@ const favoritesSlice = createSlice({
       }
     },
   },
+  //cmt: When the user signs out, the signedOut action happens, extraReducers will clear the favorite status.
   extraReducers: (builder) => {
     // Don't show the previous user's favorites after signing out.
     builder.addCase(signedOut, (state) => {
