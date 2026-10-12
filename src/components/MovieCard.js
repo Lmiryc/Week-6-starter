@@ -1,8 +1,14 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
 
+import { useGenresQuery } from '../services/tmdbApi';
+
 // A tappable movie summary. `compact` renders a tall poster card for horizontal rows.
 export function MovieCard({ movie, compact = false }) {
+  // The genre list is cached by RTK Query, so every card shares one request.
+  const { data: genres = [] } = useGenresQuery();
+  const genreName = genres.find((genre) => genre.id === movie.genreIds[0])?.name;
+
   const openDetails = () => router.push(`/movie/${movie.id}`);
 
   return (
@@ -13,7 +19,7 @@ export function MovieCard({ movie, compact = false }) {
           {movie.title}
         </Text>
         <Text style={styles.meta}>
-          {movie.year} · {movie.genre}
+          {genreName ? `${movie.year} · ${genreName}` : movie.year}
         </Text>
         <Text style={styles.rating}>★ {movie.rating.toFixed(1)}</Text>
       </View>
