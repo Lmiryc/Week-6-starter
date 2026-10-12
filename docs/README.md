@@ -198,29 +198,9 @@ The exact files may vary depending on the current Expo template.
 
 ---
 
-## 4. Create a Work Branch
+## 4. Your Branch
 
-Your assignment may require a specific branch name. Check the assignment instructions before continuing.
-
-Create and switch to a new branch:
-
-```bash
-git switch -c BRANCH-NAME
-```
-
-For example, if your assigned branch name is `prototype-one`, you would run:
-
-```bash
-git switch -c prototype-one
-```
-
-Confirm your current branch:
-
-```bash
-git branch --show-current
-```
-
-The result should match your branch name.
+You can stick with the main branch for your PR
 
 Commit the current changes
 
