@@ -1,6 +1,6 @@
 // Convert raw TMDB responses into the smaller shapes our screens use, so
 // components never need to know TMDB's field names.
-
+// Read TMDB data and pass it 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 const PLACEHOLDER_POSTER = 'https://placehold.co/200x300/171923/ffffff?text=MOVIEwiki';
 
